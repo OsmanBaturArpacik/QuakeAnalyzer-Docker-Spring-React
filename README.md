@@ -1,0 +1,1 @@
+# KARTACA_GOREV
