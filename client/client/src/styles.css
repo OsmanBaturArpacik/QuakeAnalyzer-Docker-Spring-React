@@ -1,0 +1,15 @@
+h1 {
+    background-color: #282c34;
+    color: white;
+}
+
+
+.container {
+    padding: 10px;
+    text-align: center;
+    background-color: #282c34;
+}
+
+.container:empty {
+    display: none;
+}
