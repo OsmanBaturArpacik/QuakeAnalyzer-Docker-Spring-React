@@ -4,14 +4,13 @@ import com.earthquake.core.model.Models;
 import com.earthquake.core.service.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class Controllers {
 
     private Services services;
@@ -21,9 +20,17 @@ public class Controllers {
         this.services = services;
         this.models = models;
     }
-    @PostMapping("/x")
+    @PostMapping("/analyzData")
     @ResponseBody
-    public ResponseEntity<String> loginAuthentication(@RequestParam("x") String username, @RequestParam("y") String password) {
-        return ResponseEntity.status(UNAUTHORIZED).body("404");
+    public ResponseEntity<String> loginAuthentication(@RequestParam("x") String x, @RequestParam("y") String y) {
+        System.out.println("POSTING x:" + x + "\ny:" + y);
+        return ResponseEntity.status(OK).body("404-TESTING RN");
+    }
+    @GetMapping("/analyzeDatas")
+    @ResponseBody
+    public ResponseEntity<String> x(@RequestParam("x") String x, @RequestParam("y") String y) {
+        System.out.println("GETTING x:" + x + "\ny:" + y);
+        return ResponseEntity.status(UNAUTHORIZED).body("404-TESTING RN");
     }
 }
+
