@@ -1,22 +1,28 @@
 version: '3'
-#services:
-#  backend:
-#    build: ./backend
-#    ports:
-#      - "8080:8080"
-#  frontend:
-#    build: ../frontend
-#    ports:
-#      - "3000:3000"
+services:
+  frontend:
+    build:
+      context: ../client/client
+      dockerfile: Dockerfile_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
 
+  backend:
+    build:
+      context: ./core
+      dockerfile: Dockerfile_backend
+    ports:
+      - "8080:8080"
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=project'
+      - 'MYSQL_PASSWORD='
+      - 'MYSQL_ROOT_PASSWORD='
+      - 'MYSQL_USER=root'
+    ports:
+      - '3306'
 
-#services:
-#  mysql:
-#    image: 'mysql:latest'
-#    environment:
-#      - 'MYSQL_DATABASE=mydatabase'
-#      - 'MYSQL_PASSWORD=secret'
-#      - 'MYSQL_ROOT_PASSWORD=verysecret'
-#      - 'MYSQL_USER=myuser'
-#    ports:
-#      - '3306'
+# TODO dockerfile lari docker-compose up yap. Fakat react proxy kullanimindan dolayi hata aliyorum. Onu fixle.
