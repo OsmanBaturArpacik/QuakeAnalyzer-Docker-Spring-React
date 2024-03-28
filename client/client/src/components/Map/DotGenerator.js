@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MapBasic from './MapBasic';
+import {map} from "./MapBasic";
 //TODO
 // start index tut mapInstance.removeLayer(startindex) ile ilk ekleneni sil
 function DotGenerator(props) {
@@ -10,7 +10,7 @@ function DotGenerator(props) {
 
     useEffect(() => {
         if (!mapInstance) {
-            setMapInstance(new MapBasic().getMapInstance());
+            setMapInstance(map);
         }
     }, [mapInstance]);
 

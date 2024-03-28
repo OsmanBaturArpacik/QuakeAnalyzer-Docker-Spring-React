@@ -1,43 +1,31 @@
-import React, { Component } from 'react';
-import maplibregl from 'maplibre-gl';
+import React, { useRef, useEffect, useState } from 'react';
+import * as maptilersdk from '@maptiler/sdk';
+import "@maptiler/sdk/dist/maptiler-sdk.css";
+import './map.css';
+let map;
+function MapBasic() {
+    const mapContainer = useRef(null);
+    // const map = useRef(null);
+    const kartaca = { lng: 28.88987084209524, lat: 41.026163949733515 };
+    const [zoom] = useState(14);
+    maptilersdk.config.apiKey = 'MXLQcbMRvctNGBW5yfuf';
 
-let mapInstance;
+    useEffect(() => {
+        if (map) return; // stops map from intializing more than once
 
-class MapBasic extends Component {
-
-
-    componentDidMount() {
-        const mapContainer = document.getElementById('map')
-
-        const initialViewState = {
-            longitude: 28.8895977631662,
-            latitude: 41.01959529376145,
-            zoom: 2
-        };
-
-        mapInstance = new maplibregl.Map({
-            container: mapContainer,
-            style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=MXLQcbMRvctNGBW5yfuf',
-            center: [initialViewState.longitude, initialViewState.latitude],
-            zoom: initialViewState.zoom
+        map = new maptilersdk.Map({
+            container: mapContainer.current,
+            style: maptilersdk.MapStyle.STREETS,
+            center: [kartaca.lng, kartaca.lat],
+            zoom: zoom
         });
-    }
 
-    componentWillUnmount() {
-        if (mapInstance) {
-            mapInstance.remove();
-        }
-    }
+    }, [kartaca.lng, kartaca.lat, zoom]);
 
-    getMapInstance() {
-        return mapInstance;
-    }
-
-    render() {
-        return (
-            <div id="map" style={{ width: "100%", height: " calc(100vh - 77px)" }} />
-        );
-    }
+    return (
+        <div className="map-wrap">
+            <div ref={mapContainer} className="map" />
+        </div>
+    );
 }
-
-export default MapBasic;
+export {MapBasic, map};
