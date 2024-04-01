@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
@@ -21,6 +23,22 @@ public class Controllers {
         this.services = services;
         this.models = models;
     }
+    @PostMapping("/routerName")
+    @ResponseBody
+    public ResponseEntity<String> test(@RequestBody Map<String, String> payload) {
+        String lat = payload.get("lat");
+        String lon = payload.get("lon");
+        String intensity = payload.get("intensity");
+
+        System.out.println("lat: " + lat);
+        System.out.println("lon: " + lon);
+        System.out.println("intensity: " + intensity);
+        System.out.println();
+
+        return ResponseEntity.status(OK).body("Success");
+    }
+
+
     @PostMapping("/analyzData")
     @ResponseBody
     public ResponseEntity<String> loginAuthentication(@RequestParam("x") String x, @RequestParam("y") String y) {

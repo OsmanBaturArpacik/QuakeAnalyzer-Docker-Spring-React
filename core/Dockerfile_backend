@@ -1,11 +1,7 @@
 FROM eclipse-temurin:21.0.1_12-jdk
-
 WORKDIR /app
-
 COPY build/libs/core-0.0.1-SNAPSHOT.jar ./app.jar
-
 EXPOSE 8080
-
 CMD ["java", "-jar", "app.jar"]
 
 #docker build --tag backend/test/1 --file Dockerfile_backend .
@@ -16,25 +12,3 @@ CMD ["java", "-jar", "app.jar"]
 #docker run your-image-name
 #docker-compose up
 #pause, down (remove) , ps (status), logs, exec
-
-#FROM openjdk:11-jre-slim
-#VOLUME /tmp
-#ARG JAR_FILE
-#COPY ${JAR_FILE} app.jar
-#ENTRYPOINT ["java","-jar","/app.jar"]
-
-#
-#ARG version=latest
-#LABEL authors="tersoman"
-#
-#WORKDIR /app
-#COPY . /app
-#RUN ./gradlew build
-#
-#ENTRYPOINT ["java","-jar", "application.jar"]
-
-#CMD ["java", "-jar", "build/libs/core.jar"]
-
-#FROM ubuntu:latest
-#ENTRYPOINT ["top", "-b"]
-

@@ -7,7 +7,6 @@ import {MapBasic} from "./components/Map/MapBasic";
 import DotGenerator from "./components/Map/DotGenerator";
 import RequestTest from "./components/RequestTest";
 
-
 function App() {
     const [coordinatesList, setCoordinatesList] = useState([]);
 

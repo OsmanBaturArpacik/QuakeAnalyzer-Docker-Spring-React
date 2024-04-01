@@ -1,28 +1,70 @@
 version: '3'
 services:
-  frontend:
-    build:
-      context: ../client/client
-      dockerfile: Dockerfile_frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+#  frontend:
+#    build:
+#      context: ../client/client
+#      dockerfile: Dockerfile_frontend
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend
 
   backend:
     build:
-      context: ./core
+      context: ../core
       dockerfile: Dockerfile_backend
     ports:
       - "8080:8080"
-  mysql:
-    image: 'mysql:latest'
-    environment:
-      - 'MYSQL_DATABASE=project'
-      - 'MYSQL_PASSWORD='
-      - 'MYSQL_ROOT_PASSWORD='
-      - 'MYSQL_USER=root'
-    ports:
-      - '3306'
 
-# TODO dockerfile lari docker-compose up yap. Fakat react proxy kullanimindan dolayi hata aliyorum. Onu fixle.
+#  mysql:
+#    image: 'mysql:latest'
+#    environment:
+#      - 'MYSQL_DATABASE=project'
+#      - 'MYSQL_ALLOW_EMPTY_PASSWORD=true'
+#    ports:
+#      - '3306'
+
+
+  my_script:
+    image: everpeace/curl-jq
+    build:
+      context: .
+      dockerfile: Dockerfile_script
+    environment:
+      LATITUDE: ${LATITUDE}
+      LONGITUDE: ${LONGITUDE}
+      INTENSITY: ${INTENSITY}
+#      - LATITUDE=20
+#      - LONGITUDE=20
+#      - INTENSITY=20
+#baslangic degeri ile yapilabiliyor direkt lat lon intensity girmezsen sonsuz dongu cikmak icin stop yaz fakat n tane container olusuyor inputla girince cozemedim
+#docker run core-my_script:latest
+#docker-compose run -e LATITUDE=50 -e LONGITUDE=60 -e INTENSITY=70 my_service
+#docker-compose restart my_script
+#docker-compose restart - LATITUDE=10 -e LONGITUDE=20 -e INTENSITY=30 my_script
+#docker-compose stop my_script sonsuz donguden cikmak icin tekrar baslatmak icin restart
+#docker-compose up -d my_script
+#jq --arg LATITUDE 20 --arg LONGITUDE 30 --arg INTENSITY 40 '.LATITUDE = $LATITUDE | .LONGITUDE = $LONGITUDE | .INTENSITY = $INTENSITY' .env.json > .env.json.tmp
+#mv .env.json.tmp .env.json
+
+#  jobmanager:
+#    image: flink:latest
+#    expose:
+#      - "6123"
+#    ports:
+#      - "8081:8081"
+#    command: jobmanager
+#
+#  taskmanager:
+#    image: flink:latest
+#    expose:
+#      - "6121"
+#    command: taskmanager
+#    depends_on:
+#      - jobmanager
+
+#docker-compose up --build-arg SELECTED_SCRIPT=script1
+#docker-compose exec <service_name> <sh,bash>
+#docker-compose exec web sh
+# docker-compose up -d
+# -d arkaplanda çalıştırır
