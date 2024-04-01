@@ -50,18 +50,16 @@ def def_script2():
         time.sleep(10)
 
 def main():
-    print("TESSSSSSSSSSSSST")
     latitude = os.getenv("LATITUDE")
     longitude = os.getenv("LONGITUDE")
     intensity = os.getenv("INTENSITY")
-    print(latitude + longitude + intensity)
 
     if latitude and longitude and intensity:
         def_script1(latitude, longitude, intensity)
     elif latitude is not None and longitude is not None and intensity is not None:
         def_script2()
     else:
-        print("Usage: script1 <space> lat <space> lon <space> intensity:")
+        print("Usage: check documents to use correctly")
         sys.exit(1)
 
 if __name__ == "__main__":
