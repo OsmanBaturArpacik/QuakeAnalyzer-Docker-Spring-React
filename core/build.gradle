@@ -24,12 +24,20 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+//	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.apache.flink:flink-java:1.16.1'
-	implementation 'org.apache.flink:flink-test-utils:1.16.1'
+	implementation 'org.apache.flink:flink-java:1.19.0'
+	implementation 'org.apache.flink:flink-test-utils:1.19.0'
+	implementation 'org.apache.flink:flink-table-common:1.19.0'
+	implementation 'org.apache.flink:flink-runtime-web:1.19.0'
+	compileOnly 'org.apache.flink:flink-streaming-java:1.19.0'
+	implementation 'org.apache.flink:flink-clients:1.19.0'
+	implementation 'org.apache.flink:flink-java:1.19.0'
+	implementation 'org.apache.flink:flink-connector-kafka:3.1.0-1.18'
+	implementation 'org.apache.flink:flink-cep_2.11:1.13.5'
+
 }
 
 tasks.named('test') {

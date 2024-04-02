@@ -39,6 +39,33 @@ services:
 #docker-compose up -d my_script
 # docker-compose down
 
+
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    hostname: zk_cayan
+#    container_name: zk_cayan
+#    ports:
+#      - "2181:2181"
+#  kafka:
+#    image: wurstmeister/kafka:latest
+#    hostname: kafka_cayan
+#    container_name: kafka_cayan
+#    ports:
+#      - "9094:9094"
+#    environment:
+#      KAFKA_ZOOKEEPER_CONNECT: zk_cayan:2181
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+#      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+#      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+#      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+#      KAFKA_CREATE_TOPICS: "earthquake:1:1,analyzedTopic:1:1,token-service:1:1,user-conf:1:1"
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#  scraper:
+#    build: ./scraper
+#    ports:
+#      - "8085:8085"
+
 #  jobmanager:
 #    image: flink:latest
 #    expose:

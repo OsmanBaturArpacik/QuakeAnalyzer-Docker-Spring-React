@@ -39,17 +39,17 @@ public class Controllers {
     }
 
 
-    @PostMapping("/analyzData")
-    @ResponseBody
-    public ResponseEntity<String> loginAuthentication(@RequestParam("x") String x, @RequestParam("y") String y) {
-        System.out.println("POSTING x:" + x + "\ny:" + y);
-        return ResponseEntity.status(OK).body("404-TESTING RN");
-    }
-    @GetMapping("/analyzeDatas")
-    @ResponseBody
-    public ResponseEntity<String> x(@RequestParam("x") String x, @RequestParam("y") String y) {
-        System.out.println("GETTING x:" + x + "\ny:" + y);
-        return ResponseEntity.status(UNAUTHORIZED).body("404-TESTING RN");
-    }
+//    @PostMapping("/analyzData")
+//    @ResponseBody
+//    public ResponseEntity<String> loginAuthentication(@RequestParam("x") String x, @RequestParam("y") String y) {
+//        System.out.println("POSTING x:" + x + "\ny:" + y);
+//        return ResponseEntity.status(OK).body("404-TESTING RN");
+//    }
+//    @GetMapping("/analyzeDatas")
+//    @ResponseBody
+//    public ResponseEntity<String> x(@RequestParam("x") String x, @RequestParam("y") String y) {
+//        System.out.println("GETTING x:" + x + "\ny:" + y);
+//        return ResponseEntity.status(UNAUTHORIZED).body("404-TESTING RN");
+//    }
 }
 
