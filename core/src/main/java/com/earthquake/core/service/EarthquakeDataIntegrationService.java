@@ -11,17 +11,17 @@ import java.sql.Statement;
 
 @Service
 public class EarthquakeDataIntegrationService {
-    private final EarthquakeLocationDataModel dataModel;
+//    private final EarthquakeLocationDataModel dataModel;
     private Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     public static final String QUERY = "SELECT * FROM table";
 
-    @Autowired
-    public EarthquakeDataIntegrationService(EarthquakeLocationDataModel dataModel) {
-        this.dataModel = dataModel;
-    }
+//    @Autowired
+//    public EarthquakeDataIntegrationService(EarthquakeLocationDataModel dataModel) {
+//        this.dataModel = dataModel;
+//    }
 
     public boolean isEmpty(EarthquakeLocationDataModel dataModel) {
         if (dataModel.getLat() == 0 || dataModel.getLon() == 0 || dataModel.getIntensity() == 0) {
@@ -30,24 +30,24 @@ public class EarthquakeDataIntegrationService {
         return false;
     }
 
-    public boolean isValid() {
-        try {
-            connection = DatabaseConnector.connectDb();
-            statement = connection.createStatement();
-//            preparedStatement = connection.prepareStatement(QUERY);
-//            preparedStatement.setString(1, models.getX());
-//            preparedStatement.setString(2, models.getPassword());
-            resultSet = statement.executeQuery(QUERY);
-
-            if(resultSet.next()) {
-                return true;
-            }
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }
+//    public boolean isValid() {
+//        try {
+//            connection = DatabaseConnector.connectDb();
+//            statement = connection.createStatement();
+////            preparedStatement = connection.prepareStatement(QUERY);
+////            preparedStatement.setString(1, models.getX());
+////            preparedStatement.setString(2, models.getPassword());
+//            resultSet = statement.executeQuery(QUERY);
+//
+//            if(resultSet.next()) {
+//                return true;
+//            }
+//        }
+//        catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return false;
+//    }
 }
 
 

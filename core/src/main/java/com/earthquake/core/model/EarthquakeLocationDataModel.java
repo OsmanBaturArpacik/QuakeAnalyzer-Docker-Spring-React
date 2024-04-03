@@ -4,10 +4,15 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 @Data
-@Service
 public class EarthquakeLocationDataModel {
     private double lat;
     private double lon;
     private double intensity;
     private double timestamp;
+    public EarthquakeLocationDataModel(double lat, double lon, double intensity) {
+        this.lat = lat;
+        this.lon = lon;
+        this.intensity = intensity;
+        this.timestamp = System.currentTimeMillis();
+    }
 }
