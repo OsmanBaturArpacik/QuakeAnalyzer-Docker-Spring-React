@@ -15,6 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
 @CrossOrigin(origins = "*")
+//@RequestMapping("/api")
 public class EarthquakeDataController {
 
     private EarthquakeDataIntegrationService dataIntegrationService;
@@ -41,9 +42,9 @@ public class EarthquakeDataController {
 //
 //        return ResponseEntity.status(OK).body("Data received successfully");
 //    }
-    @GetMapping("/newData")
+    @PostMapping("/addNewData")
     @ResponseBody
-    public ResponseEntity<List<EarthquakeLocationDataModel>> flink(@RequestParam Map<String, String> payload) {
+    public ResponseEntity<String> flink(@RequestParam Map<String, String> payload) {
         // her yeri veride new yerine clone'lanabilir
         EarthquakeLocationDataModel dataModel = new EarthquakeLocationDataModel(
                 Double.parseDouble(payload.get("lat")),
@@ -55,19 +56,28 @@ public class EarthquakeDataController {
         if(!dataIntegrationService.isEmpty(dataModel)) {
             activeEarthquakeListService.addElement(dataModel);
             activeEarthquakeListService.updateList();
-            return ResponseEntity.status(OK).body(activeEarthquakeListService.getListInstance());
+            return ResponseEntity.status(OK).body("Successfully finished");
         }
-        return ResponseEntity.status(BAD_REQUEST).body(null);
+        return ResponseEntity.status(BAD_REQUEST).body("Post Request Declined");
     }
     @GetMapping("/getList")
     @ResponseBody
     public ResponseEntity<List<EarthquakeLocationDataModel>> getListWithStatus() {
         // bos degilse timestampleri kontrol et yeni listeyi gonder
+
+//        ArrayList<EarthquakeLocationDataModel> xd =  new ArrayList<>();;
+//        xd.add(new EarthquakeLocationDataModel(20,34,10));
+//        xd.add(new EarthquakeLocationDataModel(21,12,6.4));
+//        xd.add(new EarthquakeLocationDataModel(23,42,2.4));
+//        xd.add(new EarthquakeLocationDataModel(40,34,3));
+//        xd.add(new EarthquakeLocationDataModel(21,30,10));
+//        xd.add(new EarthquakeLocationDataModel(31,20,4));
+
         if(!activeEarthquakeListService.getListInstance().isEmpty()) {
             activeEarthquakeListService.updateList();
             return ResponseEntity.status(OK).body(activeEarthquakeListService.getListInstance());
         }
-        return ResponseEntity.status(NOT_FOUND).body(null);
+        return ResponseEntity.status(BAD_REQUEST).body(null);
     }
 }
 

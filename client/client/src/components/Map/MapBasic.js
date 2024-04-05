@@ -7,7 +7,9 @@ function MapBasic() {
     const mapContainer = useRef(null);
     // const map = useRef(null);
     const kartaca = { lng: 28.88987084209524, lat: 41.026163949733515 };
-    const [zoom] = useState(14);
+    const [zoom] = useState(7); //14 kartaca
+    const [maxZoom] = useState(7);
+    const [minZoom] = useState(7);
     maptilersdk.config.apiKey = 'MXLQcbMRvctNGBW5yfuf';
 
     useEffect(() => {
@@ -17,7 +19,9 @@ function MapBasic() {
             container: mapContainer.current,
             style: maptilersdk.MapStyle.STREETS,
             center: [kartaca.lng, kartaca.lat],
-            zoom: zoom
+            zoom: zoom,
+            maxZoom: maxZoom,
+            minZoom: minZoom
         });
 
     }, [kartaca.lng, kartaca.lat, zoom]);

@@ -15,7 +15,7 @@ def def_script1(arg1, arg2, arg3):
         "intensity": str(intensity)
     }
 
-    backend_url = "http://backend:8080/routerName"
+    backend_url = "http://backend:8080/addNewData"
     try:
         response = requests.post(backend_url, json=payload)
         if response.status_code == 200:
@@ -38,10 +38,24 @@ def def_script2():
             "intensity": str(intensity)
         }
 
-        backend_url = "http://backend:8080/routerName"
+        backend_url = "http://backend:8080/addNewData"
         try:
             response = requests.post(backend_url, json=payload)
             if response.status_code == 200:
+
+                # post frontend
+                frontend_url = "http://frontend:3000/script"
+                try:
+                    frontend_payload = {
+                    }
+                    frontend_response = requests.post(frontend_url, json=frontend_payload)
+                except Exception as e:
+                    print("Exception: " + str(e))
+                if frontend_response.status_code == 200:
+                        print("Frontend response:", frontend_response.text)
+                    else:
+                        print("Error:", frontend_response.status_code)
+
                 print(f"Dot created: lat={lat}, lon={lon}, intensity={intensity}")
             else:
                 print("Status: " + str(response.status_code) + "\n" + "Text:" + response.text)

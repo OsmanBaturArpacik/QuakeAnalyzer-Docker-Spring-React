@@ -34,6 +34,10 @@ public class ActiveEarthquakeListService {
                         if (Haversine.CalculateDistance(newData.getLat(), newData.getLon(), oldData.getLat(), oldData.getLon()) < 50.0) {
                             // ayni noktada sayilacagindan yeni olusan depremi ustune eklemek yerine oncekinin timestampini guncelliyoruz
                             oldData.setTimestamp(System.currentTimeMillis());
+                            // depremin siddeti buyukse eskisininn ustune de yaz
+                            if(newData.getIntensity() > oldData.getIntensity()) {
+                                oldData.setIntensity(newData.getIntensity());
+                            }
                             // yeni listeyi frontende gonder
                             isContain = true;
                             break;
@@ -70,5 +74,4 @@ public class ActiveEarthquakeListService {
             }
         }
     }
-
 }
