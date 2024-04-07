@@ -106,9 +106,6 @@
     
     docker-compose up
   ```
-## Learn More
-You can learn more at [How to display MapLibre GL JS map using React JS](https://docs.maptiler.com/react/maplibre-gl-js/how-to-use-maplibre-gl-js/?utm_medium=referral&utm_source=github&utm_campaign=2022-05%20%7C%20js%20frameworks%20%7C%20react).
-
 >## Contact
 >[![Static Badge](https://img.shields.io/badge/Osman%20Batur%20Arpac%C4%B1k---?style=social&logo=linkedin&labelColor=white&color=lightblue)](https://www.linkedin.com/in/osman-batur-arpacik/)
 >&nbsp; &nbsp; &nbsp; [![Static Badge](https://img.shields.io/badge/OsmanBaturArpacik---?style=social&logo=github&labelColor=white&color=lightblue)](https://github.com/OsmanBaturArpacik)
