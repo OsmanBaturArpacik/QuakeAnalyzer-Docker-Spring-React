@@ -1,4 +1,4 @@
-# KARTACA USG GOREV - DEPREM VERILERI ISLEME
+># KARTACA USG GOREV - DEPREM VERILERI ISLEME
 
 >![Static Badge](https://img.shields.io/badge/Java-21.0.1-red?style=flat&logoColor=green)
 &nbsp; &nbsp; ![Static Badge](https://img.shields.io/badge/node-v20.12.0-red?style=flat&logo=nodedotjs&logoColor=green)
@@ -25,87 +25,70 @@
 &nbsp; &nbsp; &nbsp; [![Static Badge](https://img.shields.io/badge/react---?style=for-the-badge&logo=react&labelColor=white&color=lightblue)](https://react.dev/)
 &nbsp; &nbsp; &nbsp; [![Static Badge](https://img.shields.io/badge/docker---?style=for-the-badge&logo=docker&labelColor=white&color=blue)](https://www.docker.com/)
 
-## Install
+>## Install
+>
+>[Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-[Docker Desktop](https://www.docker.com/products/docker-desktop/)
+>## Usage
+>1. Clone this repo
+>  ```sh
+>    //open cmd
+>    
+>    cd /d C:\
+>    
+>    mkdir repo_project
+>    
+>    cd repo_project
+>    
+>    git clone https://github.com/OsmanBaturArpacik/KARTACA_GOREV.git
+>  ```
+>Eğer private olduğundan problem olursa [buradan](https://drive.google.com/drive/folders/1re9dihwhik6ai3ERZk2ArbxtplA7WRN5?usp=drive_link)
+>indirebilirisiniz
+>
+>Önceden build yapılmış proje dosyalarına [buradan](https://drive.google.com/drive/folders/1-QY0lkwEpwIuJ-WKIJhp89ZVRa6TNn_l?usp=drive_link) erişebilirisiniz
+>
+>
+>2. Build & Install
+>  ```sh
+>    cd client/client
+>    
+>    npm run build
+>    
+>    cd ../..
+>    
+>    cd core
+>    
+>    ./gradlew build
+>  ```
+>
+>3. Docker Setup
+>  ```sh
+>    // open docker desktop
+>    docker-compose build
+>    
+>    docker-compose up
+>  ```
+>4. docker-compose up'tan sonra 3000 portlu http://localhost:3000/ girebilirsiniz [Website URL](http://localhost:3000/)
+>
+>Script1
+>  ```sh
+>    // .env icindeki verileri degistirerek script degistirebilirsiniz.
+>    // "deger" yerine istediginiz noktayı koyabilirisiniz. 
+>    LATITUDE="deger"
+>    LONGITUDE="deger"
+>    INTENSITY="deger"
+>    // setledikten sonra docker-compose up ile yeniden başlatabilirsiniz.
+>  ```
+>Script2
+>  ```sh
+>    // .env icindeki verileri degistirerek script degistirebilirsiniz.
+>    // .env eğer üçü de "999" ise rastgele durdurulana kadar rastgele nokta oluşturur.(script2)
+>    LATITUDE="999"
+>    LONGITUDE="999"
+>    INTENSITY="999"
+>    // setledikten sonra docker-compose up ile yeniden başlatabilirsiniz.
+>  ```
 
-## Usage
-
-[//]: # (Quick way to start a web map application with MapLibre GL JS using Create React App.)
-
-[//]: # ()
-[//]: # (A simple fullscreen map application as an example on how to use MapTiler maps together with React and MapLibre GL JS for your own React app.)
-
-[//]: # ()
-[//]: # (1. Clone this repo)
-
-[//]: # ()
-[//]: # (  ```sh)
-
-[//]: # (    git clone https://github.com/OsmanBaturArpacik/KARTACA_GOREV.git)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (2. Navigate to the newly created project folder **...\kartaca\core**)
-
-[//]: # (  ```sh)
-
-[//]: # (    cd cd \kartaca\core)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (3. Build, Install dependencies)
-
-[//]: # (  ```sh)
-
-[//]: # (    npm install)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (4. :warning: Open the App.js file and replace **YOUR_MAPTILER_API_KEY_HERE** with your actual [MapTiler API key]&#40;https://cloud.maptiler.com/account/keys/&#41;.)
-
-[//]: # ()
-[//]: # (:information_source: If you don't have an API KEY you can create it for **FREE** at https://www.maptiler.com/cloud/)
-
-[//]: # ()
-[//]: # (5. Start your local environment)
-
-[//]: # (  ```sh)
-
-[//]: # (    npm start)
-
-[//]: # (  ```)
-
-[//]: # ()
-[//]: # (6. You will find your app on address http://localhost:3000/. Now you should see the map in your browser.)
-
-1. open cmd
-  ```sh
-    cd /d C:\
-
-    mkdir repo_project
-    
-    cd repo_project
-    
-    git clone
-    
-    cd kartac/client/client
-    
-    npm run build
-    
-    cd ../..
-    
-    cd core
-    
-    ./gradlew build
-    
-    docker-compose build
-    
-    docker-compose up
-  ```
 >## Contact
 >[![Static Badge](https://img.shields.io/badge/Osman%20Batur%20Arpac%C4%B1k---?style=social&logo=linkedin&labelColor=white&color=lightblue)](https://www.linkedin.com/in/osman-batur-arpacik/)
 >&nbsp; &nbsp; &nbsp; [![Static Badge](https://img.shields.io/badge/OsmanBaturArpacik---?style=social&logo=github&labelColor=white&color=lightblue)](https://github.com/OsmanBaturArpacik)
