@@ -88,6 +88,8 @@
 >    INTENSITY="999"
 >    // setledikten sonra docker-compose up ile yeniden başlatabilirsiniz.
 >  ```
+>
+> #### Video: [Kullanım ve kurulum videosu](https://drive.google.com/drive/folders/11pE4PBO7X29caLyX9FvMFeZ1umJoHp2V?usp=drive_link)
 
 >## Contact
 >[![Static Badge](https://img.shields.io/badge/Osman%20Batur%20Arpac%C4%B1k---?style=social&logo=linkedin&labelColor=white&color=lightblue)](https://www.linkedin.com/in/osman-batur-arpacik/)
