@@ -50,7 +50,7 @@ const MapBasic = () => {
             } catch (error) {
                 console.error('There was a problem fetching new data:', error);
             } finally {
-                //18 saniyede bir verileri al
+                //45 saniyede bir verileri al
                 setTimeout(fetchDataPeriodically, 45000);
             }
         };
