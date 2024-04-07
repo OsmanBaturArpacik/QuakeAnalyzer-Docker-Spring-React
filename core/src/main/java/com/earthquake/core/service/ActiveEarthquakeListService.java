@@ -64,7 +64,7 @@ public class ActiveEarthquakeListService {
                 Iterator<EarthquakeLocationDataModel> iterator = listInstance.iterator();
                 while (iterator.hasNext()) {
                     EarthquakeLocationDataModel dataModel = iterator.next();
-                    if (currentTime - dataModel.getTimestamp() > 60000) {
+                    if (currentTime - dataModel.getTimestamp() > 10000) {//60000
                         // Eger 60 saniyeden daha eskiyse listeden kaldir
                         iterator.remove();
                     }
