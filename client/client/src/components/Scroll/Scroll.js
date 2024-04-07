@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { animateScroll } from 'react-scroll';
-import {wait} from "@testing-library/user-event/dist/utils";
 
 const Scroll = () => {
     const [scrolled, setScrolled] = useState(false);

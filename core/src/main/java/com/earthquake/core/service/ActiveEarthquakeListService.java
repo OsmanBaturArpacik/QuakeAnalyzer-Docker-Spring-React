@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @Getter
 @Service
@@ -20,7 +19,7 @@ public class ActiveEarthquakeListService {
             // liste bos yeni veriyi ekle
             if(listInstance.isEmpty()) {
                 listInstance.add(newData);
-                System.out.println(listInstance.toString() + "liste bostu bende elemani ekledim");
+//                System.out.println(listInstance.toString() + "liste bos yeni eklendi");
                 return;
             }
             // liste bos degil kontrolleri yap
@@ -28,8 +27,8 @@ public class ActiveEarthquakeListService {
                 // foreach traverse list check for contains area
                 synchronized(ActiveEarthquakeListService.class) {
                     for (EarthquakeLocationDataModel oldData : listInstance) {
-                        System.out.println("old data"+oldData.getLat()+" "+oldData.getLon()+" "+oldData.getIntensity()+" "+oldData.getTimestamp());
-                        System.out.println("distance:"+(int) Haversine.CalculateDistance(newData.getLat(), newData.getLon(), oldData.getLat(), oldData.getLon()));
+//                        System.out.println("old data"+oldData.getLat()+" "+oldData.getLon()+" "+oldData.getIntensity()+" "+oldData.getTimestamp());
+//                        System.out.println("distance:"+(int) Haversine.CalculateDistance(newData.getLat(), newData.getLon(), oldData.getLat(), oldData.getLon()));
                         // foreach ile listedeki elemanlari alip hepsini yeni veriye gore karsilastir
                         if (Haversine.CalculateDistance(newData.getLat(), newData.getLon(), oldData.getLat(), oldData.getLon()) < 50.0) {
                             // ayni noktada sayilacagindan yeni olusan depremi ustune eklemek yerine oncekinin timestampini guncelliyoruz
@@ -46,12 +45,12 @@ public class ActiveEarthquakeListService {
                     if(!isContain) {
                         // if e girmediyse yeni depremi ekle
                         listInstance.add(newData);
-                        System.out.println(listInstance.toString()+"add new element ife girmedim");
+//                        System.out.println(listInstance.toString()+"add new element");
                     }
                 }
             }
         } else {
-            // dbye de yazilabilir olan depremler
+            // dbye de yazilabilir gerceklesmis butun depremler
         }
 
     }
@@ -64,13 +63,11 @@ public class ActiveEarthquakeListService {
                 Iterator<EarthquakeLocationDataModel> iterator = listInstance.iterator();
                 while (iterator.hasNext()) {
                     EarthquakeLocationDataModel dataModel = iterator.next();
-                    if (currentTime - dataModel.getTimestamp() > 10000) {//60000
-                        // Eger 60 saniyeden daha eskiyse listeden kaldir
+                    if (currentTime - dataModel.getTimestamp() > 60000) {
+                        // eger 60 saniyeden daha eskiyse listeden kaldir
                         iterator.remove();
                     }
                 }
-//                // Gercek listeyi guncelle
-//                listInstance = listCopy;
             }
         }
     }

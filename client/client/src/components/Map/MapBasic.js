@@ -50,7 +50,8 @@ const MapBasic = () => {
             } catch (error) {
                 console.error('There was a problem fetching new data:', error);
             } finally {
-                setTimeout(fetchDataPeriodically, 4000); // 60 saniye (60000 milisaniye)
+                //18 saniyede bir verileri al
+                setTimeout(fetchDataPeriodically, 45000);
             }
         };
 
@@ -70,17 +71,17 @@ const MapBasic = () => {
             return;
         }
         else {
-            // Önceki işaretçileri temizle
+            // onceki isaretcileri sil
             map.current.eachLayer(layer => {
                 if (layer instanceof L.Marker) {
                     map.current.removeLayer(layer);
                 }
             });
 
-            // Yeni işaretçileri ekle
+            // yeni isaretcileri ekle
             markers.forEach(marker => {
                 const pulsingIcon = L.icon.pulse({ iconSize: [20*(marker.intensity)/2.3, 20*(marker.intensity)/2.3], color: 'red' });
-                L.marker([marker.lon, marker.lat], { icon: pulsingIcon })
+                L.marker([marker.lat, marker.lon], { icon: pulsingIcon })
                     .addTo(map.current)
                     .bindPopup(`Latitude: ${marker.lat},<br> Longitude: ${marker.lon},<br> Intensity: ${marker.intensity},<br> Timestamp: ${new Date(marker.timestamp).toLocaleDateString()}`);
             });

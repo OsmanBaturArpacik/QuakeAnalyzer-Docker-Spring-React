@@ -1,23 +1,16 @@
 FROM python:3.9-alpine
 
+ENV GROUP_ID=1000 \
+    USER_ID=1000 \
+    PYTHONUNBUFFERED=1
+
 RUN apk update \
     && apk add python3 py3-pip \
     && python3 -m venv /venv \
-    && /venv/bin/pip install requests
+    && /venv/bin/pip install requests \
+    && /venv/bin/pip install python-dotenv
 
 WORKDIR /app
 COPY scripts/ /app/scripts/
 
 CMD ["/venv/bin/python3", "/app/scripts/script.py"]
-
-#docker build -t myimage .
-#docker run myimage arg1 arg2 arg3  # script.py'yi argümanlarla çalıştırmak için
-#docker run myimage  # script.py'yi argümansız olarak çalıştırmak için
-
-#ENTRYPOINT ["/venv/bin/python3", "/app/scripts/script.py"]
-
-
-#ENTRYPOINT ["/venv/bin/python3"]
-#docker ps -a
-#docker start <container_name>
-#docker run <container_name> /app/scripts/script.py

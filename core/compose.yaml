@@ -8,6 +8,7 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    container_name: frontend_container
 
   backend:
     build:
@@ -15,28 +16,36 @@ services:
       dockerfile: Dockerfile_backend
     ports:
       - "8080:8080"
-
-  mysql:
-    image: 'mysql:latest'
-    environment:
-      - 'MYSQL_DATABASE=project'
-      - 'MYSQL_ALLOW_EMPTY_PASSWORD=true'
-    ports:
-      - '3306'
-
+    container_name: backend_container
 
   my_script:
     build:
       context: .
       dockerfile: Dockerfile_script
-    environment:
-      LATITUDE: ${LATITUDE}
-      LONGITUDE: ${LONGITUDE}
-      INTENSITY: ${INTENSITY}
-# docker-compose run --env LATITUDE=50 --env LONGITUDE=60 --env INTENSITY=70 my_script
-# docker-compose restart my_script
-#docker-compose stop my_script sonsuz donguden cikmak icin tekrar baslatmak icin restart
-#docker-compose up -d my_script
+    env_file: .env
+    depends_on:
+      - backend
+      - frontend
+    container_name: my_script_container
+    ports:
+      - "8085:8085"
+#  mysql:
+#    image: 'mysql:latest'
+#    environment:
+#      - 'MYSQL_DATABASE=project'
+#      - 'MYSQL_ALLOW_EMPTY_PASSWORD=true'
+#    ports:
+#      - '3306'
+#    container_name: mysql_container
+
+# docker-compose up my_script
+# docker build --build-arg LATITUDE=40 --build-arg LONGITUDE=30 --build-arg INTENSITY=80 -t my_script1 -f Dockerfile_script .
+# docker build -t my_script2 -f Dockerfile_script .
+# docker-compose run --env LATITUDE=50 --env LONGITUDE=60 --env INTENSITY=90 my_script
+#  docker-compose run --env LATITUDE=50 --env LONGITUDE=60 --env INTENSITY=70 my_script
+#  docker-compose restart my_script
+# docker-compose stop my_script sonsuz donguden cikmak icin tekrar baslatmak icin restart
+# docker-compose up -d my_script
 # docker-compose down
 
 

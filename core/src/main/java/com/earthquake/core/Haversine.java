@@ -1,7 +1,5 @@
 package com.earthquake.core;
 
-import java.util.Map;
-
 // Java program for the haversine formula
 public class Haversine {
     public static double CalculateDistance(double lat1, double lon1,
@@ -15,7 +13,7 @@ public class Haversine {
         lat1 = Math.toRadians(lat1);
         lat2 = Math.toRadians(lat2);
 
-        // apply formulae
+        // apply formula
         double a = Math.pow(Math.sin(dLat / 2), 2) +
                 Math.pow(Math.sin(dLon / 2), 2) *
                         Math.cos(lat1) *

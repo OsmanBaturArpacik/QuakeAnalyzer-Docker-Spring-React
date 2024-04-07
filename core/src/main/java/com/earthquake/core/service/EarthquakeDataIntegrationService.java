@@ -12,11 +12,11 @@ import java.sql.Statement;
 @Service
 public class EarthquakeDataIntegrationService {
 //    private final EarthquakeLocationDataModel dataModel;
-    private Connection connection;
-    private Statement statement;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
-    public static final String QUERY = "SELECT * FROM table";
+//    private Connection connection;
+//    private Statement statement;
+//    private PreparedStatement preparedStatement;
+//    private ResultSet resultSet;
+//    public static final String QUERY = "SELECT * FROM table";
 
 //    @Autowired
 //    public EarthquakeDataIntegrationService(EarthquakeLocationDataModel dataModel) {

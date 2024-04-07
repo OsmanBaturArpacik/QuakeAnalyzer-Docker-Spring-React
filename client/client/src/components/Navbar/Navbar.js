@@ -1,7 +1,6 @@
 import "./navbar.css"
 import logoHome from "../../resources/image/home.svg";
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 class Navbar extends Component {
     render() {
     return(
@@ -20,12 +19,6 @@ class Navbar extends Component {
         )
     }
 }
-// Navbar.defaultProps = {
-//
-// }
-// Navbar.propTypes = {
-//     link : PropTypes.string.isRequired
-// }
 
 function CustomLink({ href, children, ...props}) {
     const path = window.location.pathname

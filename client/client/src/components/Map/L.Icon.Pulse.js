@@ -79,3 +79,4 @@ import L from 'leaflet';
     };
 
 })(window);
+//https://github.com/mapshakers/leaflet-icon-pulse/tree/master?tab=readme-ov-file#using-the-plugin
