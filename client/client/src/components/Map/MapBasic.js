@@ -29,7 +29,7 @@ const MapBasic = () => {
         });
 
         const mtLayer = new MaptilerLayer({
-            apiKey: "your-api-key",
+            apiKey: process.env.MAPTILER_API_KEY,
         }).addTo(map.current);
 
     }, [center.lng, center.lat, zoom]);
