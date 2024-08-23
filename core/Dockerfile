@@ -4,7 +4,7 @@ COPY build/libs/core-0.0.1-SNAPSHOT.jar ./app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
 
-#docker build --tag backend/test/1 --file Dockerfile_backend .
+#docker build --tag backend/test/1 --file Dockerfile .
 #docker run -p 8080:8080 backend/test/1
 
 #docker build -t your-image-name .

@@ -14,4 +14,10 @@ public class EarthquakeLocationDataModel {
         this.intensity = intensity;
         this.timestamp = System.currentTimeMillis();
     }
+    public EarthquakeLocationDataModel(double lat, double lon, double intensity, double timestamp) {
+        this.lat = lat;
+        this.lon = lon;
+        this.intensity = intensity;
+        this.timestamp = timestamp;
+    }
 }

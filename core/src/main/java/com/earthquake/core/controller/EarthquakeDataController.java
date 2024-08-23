@@ -2,7 +2,6 @@ package com.earthquake.core.controller;
 
 import com.earthquake.core.service.ActiveEarthquakeListService;
 import com.earthquake.core.model.EarthquakeLocationDataModel;
-import com.earthquake.core.service.EarthquakeDataIntegrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +18,10 @@ import static org.springframework.http.HttpStatus.*;
 //@RequestMapping("/api")
 public class EarthquakeDataController {
 
-    private EarthquakeDataIntegrationService dataIntegrationService;
     private ActiveEarthquakeListService activeEarthquakeListService;
 
     @Autowired
-    public EarthquakeDataController(EarthquakeDataIntegrationService dataIntegrationService,ActiveEarthquakeListService activeEarthquakeListService) {
-        this.dataIntegrationService = dataIntegrationService;
+    public EarthquakeDataController(ActiveEarthquakeListService activeEarthquakeListService) {
         this.activeEarthquakeListService = activeEarthquakeListService;
     }
 
@@ -42,7 +39,7 @@ public class EarthquakeDataController {
 
 //            System.out.println(dataModel.getLat() + " " + dataModel.getLon() + " " + dataModel.getIntensity() + " " + dataModel.getTimestamp());
             // gelen eleman bos degilse ekle
-            if (!dataIntegrationService.isEmpty(dataModel)) {
+            if (!isEmpty(dataModel)) {
                 activeEarthquakeListService.addElement(dataModel);
                 activeEarthquakeListService.updateList();
                 return ResponseEntity.status(OK).body("Successfully finished");
@@ -64,7 +61,7 @@ public class EarthquakeDataController {
         );
         System.out.println(dataModel.getLat()+" "+dataModel.getLon()+" "+dataModel.getIntensity()+" "+dataModel.getTimestamp());
 
-        if(!dataIntegrationService.isEmpty(dataModel)) {
+        if(!isEmpty(dataModel)) {
             activeEarthquakeListService.addElement(dataModel);
             activeEarthquakeListService.updateList();
             return ResponseEntity.status(OK).body("Successfully finished");
@@ -82,6 +79,15 @@ public class EarthquakeDataController {
         else {
             return ResponseEntity.status(OK).body(new ArrayList<>());
         }
+    }
+
+
+
+    public boolean isEmpty(EarthquakeLocationDataModel dataModel) {
+        if (dataModel.getLat() == 0 || dataModel.getLon() == 0 || dataModel.getIntensity() == 0) {
+            return true;
+        }
+        return false;
     }
 }
 

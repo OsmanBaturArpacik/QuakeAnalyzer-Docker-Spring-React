@@ -29,7 +29,7 @@ const MapBasic = () => {
         });
 
         const mtLayer = new MaptilerLayer({
-            apiKey: "MXLQcbMRvctNGBW5yfuf",
+            apiKey: "your-api-key",
         }).addTo(map.current);
 
     }, [center.lng, center.lat, zoom]);
@@ -51,7 +51,7 @@ const MapBasic = () => {
                 console.error('There was a problem fetching new data:', error);
             } finally {
                 //45 saniyede bir verileri al
-                setTimeout(fetchDataPeriodically, 45000);
+                setTimeout(fetchDataPeriodically, 10000);
             }
         };
 

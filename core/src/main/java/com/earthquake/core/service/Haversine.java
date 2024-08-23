@@ -1,6 +1,5 @@
-package com.earthquake.core;
+package com.earthquake.core.service;
 
-// Java program for the haversine formula
 public class Haversine {
     public static double CalculateDistance(double lat1, double lon1,
                                            double lat2, double lon2)

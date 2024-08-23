@@ -13,4 +13,4 @@ RUN npm install -g http-server
 EXPOSE 3000
 CMD ["http-server", "-p", "3000"]
 
-# docker build --tag frontend/test/1 --file Dockerfile_frontend .
+# docker build --tag frontend/test/1 --file Dockerfile .

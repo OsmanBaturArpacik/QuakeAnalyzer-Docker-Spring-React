@@ -1,9 +1,29 @@
 version: '3'
 services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
   frontend:
     build:
       context: ../client/client
-      dockerfile: Dockerfile_frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
@@ -13,80 +33,16 @@ services:
   backend:
     build:
       context: ../core
-      dockerfile: Dockerfile_backend
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     container_name: backend_container
 
   my_script:
     build:
-      context: .
-      dockerfile: Dockerfile_script
+      context: ../dataflow
+      dockerfile: Dockerfile
     env_file: .env
     depends_on:
-      - backend
       - frontend
-    container_name: my_script_container
-    ports:
-      - "8085:8085"
-#  mysql:
-#    image: 'mysql:latest'
-#    environment:
-#      - 'MYSQL_DATABASE=project'
-#      - 'MYSQL_ALLOW_EMPTY_PASSWORD=true'
-#    ports:
-#      - '3306'
-#    container_name: mysql_container
-
-# docker-compose up my_script
-# docker build --build-arg LATITUDE=40 --build-arg LONGITUDE=30 --build-arg INTENSITY=80 -t my_script1 -f Dockerfile_script .
-# docker build -t my_script2 -f Dockerfile_script .
-# docker-compose run --env LATITUDE=50 --env LONGITUDE=60 --env INTENSITY=90 my_script
-#  docker-compose run --env LATITUDE=50 --env LONGITUDE=60 --env INTENSITY=70 my_script
-#  docker-compose restart my_script
-# docker-compose stop my_script sonsuz donguden cikmak icin tekrar baslatmak icin restart
-# docker-compose up -d my_script
-# docker-compose down
-
-
-#  zookeeper:
-#    image: wurstmeister/zookeeper
-#    hostname: zk_cayan
-#    container_name: zk_cayan
-#    ports:
-#      - "2181:2181"
-#  kafka:
-#    image: wurstmeister/kafka:latest
-#    hostname: kafka_cayan
-#    container_name: kafka_cayan
-#    ports:
-#      - "9094:9094"
-#    environment:
-#      KAFKA_ZOOKEEPER_CONNECT: zk_cayan:2181
-#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-#      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
-#      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
-#      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-#      KAFKA_CREATE_TOPICS: "earthquake:1:1,analyzedTopic:1:1,token-service:1:1,user-conf:1:1"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#  scraper:
-#    build: ./scraper
-#    ports:
-#      - "8085:8085"
-
-#  jobmanager:
-#    image: flink:latest
-#    expose:
-#      - "6123"
-#    ports:
-#      - "8081:8081"
-#    command: jobmanager
-#
-#  taskmanager:
-#    image: flink:latest
-#    expose:
-#      - "6121"
-#    command: taskmanager
-#    depends_on:
-#      - jobmanager
+    container_name: script_container
